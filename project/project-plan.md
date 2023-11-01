@@ -12,12 +12,11 @@ Who are statistically the best batsman and bowler in the 20-20 format of the gam
 ## Description
 
 <!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
-XY is an important problem, because... This projects analyzes XY, using method A. The results can give insights into...
 In this data science project, I aim to determine the statistically best batsman and bowler in the 20-20 format of cricket, leveraging two comprehensive datasets: the Ball-by-ball data for International Men's Cricket Matches (2003 - 2023) and the Indian Premier League match data (2008 - 2023). As a cricket enthusiast from South Asia, particularly India, I'm passionate about resolving the age-old debate of identifying the greatest players in this format.
 
 The project involves transforming the raw data from JSON to CSV format, followed by meticulous data cleaning and feature engineering. Through extensive exploratory data analysis (EDA), I intend to uncover significant trends and patterns related to the game. By employing advanced statistical methods and machine learning techniques, I will evaluate player performance metrics such as batting average, strike rate, economy rate, and wicket-taking ability.
 
-By answering the fundamental question, "Who are statistically the best batsman and bowler in the 20-20 format of the game?" with rigorous statistical backing, this project not only settles a perennial debate but also provides valuable insights into player performance, contributing to the broader understanding of cricket statistics and player rankings. The findings can potentially influence team strategies, player selections, and fan perceptions, making it a vital analysis for cricket enthusiasts and professionals alike.
+By answering the fundamental question, "Who is statistically the best batsman and bowler in the 20-20 format of the game?" with rigorous statistical backing, this project not only settles a perennial debate but also provides valuable insights into player performance, contributing to the broader understanding of cricket statistics and player rankings. The findings can potentially influence team strategies, player selections, and fan perceptions, making it a vital analysis for cricket enthusiasts and professionals alike.
 
 ## Datasources
 
