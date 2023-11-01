@@ -41,7 +41,7 @@ Dataset contains JSON files with ball by ball data of matches, with details like
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
 
-1. Example Issue [#1][i1]
+1. Download and study JSON files from source. [#1][i1]
 2. ...
 
-[i1]: https://github.com/jvalue/made-template/issues/1
+[i1]: https://github.com/vaishnavnegi/made-Vaishnav-Negi-23114574/issues/1
