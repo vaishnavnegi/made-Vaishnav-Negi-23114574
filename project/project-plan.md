@@ -27,12 +27,14 @@ Following 2 datasets will be used in the project:
 <!-- * Metadata URL: https://mobilithek.info/offers/-6901989592576801458 -->
 * Data URL: https://cricsheet.org/downloads/t20s_male_json.zip
 * Data Type: JSON
+  
 Dataset contains JSON files with ball by ball data of matches, with details like, batsmen, bowler, dismissal, dismissal method etc.
 
 ### Datasource2: IPL Matches
 <!-- * Metadata URL: https://mobilithek.info/offers/-6901989592576801458 -->
 * Data URL: https://cricsheet.org/downloads/ipl_male_json.zip
 * Data Type: JSON
+
 Dataset contains JSON files with ball by ball data of matches, with details like, batsmen, bowler, dismissal, dismissal method etc.
 
 ## Work Packages
