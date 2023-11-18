@@ -23,15 +23,13 @@ df = df.dropna()
 # Create SQLite database and write the cleaned data
 engine = create_engine('sqlite:///trainstops.sqlite')
 df.to_sql('trainstops', engine, index=False, if_exists='replace', dtype={
-    "BFNr": BigInteger,
-    "Station": Text,
-    "Category": Text,
+    "EVA_NR": BigInteger,
+    "DS100": Text,
+    "IFOPT": Text,
+    "NAME": Text,
     "Verkehr": Text,
     "Laenge": Float,
     "Breite": Float,
-    "Land": Text,
-    "Betreiber": Text,
-    "PLZ": Text,
-    "Ort": Text,
-    "IFOPT": Text
+    "Betreiber_Name": Text,
+    "Betreiber_Nr": Integer,
 })
