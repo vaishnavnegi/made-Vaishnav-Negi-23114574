@@ -1,5 +1,5 @@
 // Exercise 3: Cars
-//Loading a car database from csv to sqlite.
+// Loading a car database from csv to sqlite.
 
 pipeline CarPipeline {
 	CarXtrctr->
@@ -95,6 +95,11 @@ pipeline CarPipeline {
             column BX,
             column BY,
             column BZ,
+            column CA,
+            column CB,
+            column CC,
+            column CD,
+            column CE
             ];
         }
 
