@@ -1,0 +1,146 @@
+// Exercise 3: Cars
+//Loading a car database from csv to sqlite.
+
+pipeline CarPipeline {
+	CarXtrctr->
+        CarTFIntrptr->
+            CarCSVIntrptr -> 
+                RowDeleter -> 
+                CarColumnDeleter-> 
+                    CarTblIntrptr-> CarLdr;
+
+    block CarXtrctr oftype HttpExtractor {
+		url: "https://www-genesis.destatis.de/genesis/downloads/00/tables/46251-0021_00.csv";
+	}
+
+	block CarTFIntrptr oftype TextFileInterpreter { 
+        encoding: "latin2";
+    }
+	
+    block CarCSVIntrptr oftype CSVInterpreter {
+        delimiter: ";";
+	}
+
+    block RowDeleter oftype RowDeleter {
+        delete: [row 1, row 2, row 3, row 4, row 5, row 6, row 7, row 484, row 485, row 486, row 487,];
+    }
+
+     block CarColumnDeleter oftype ColumnDeleter {
+        delete: [
+            column D,
+            column E,
+            column F,
+            column G,
+            column H,
+            column I,
+            column J,
+            column K,
+            column L,
+            column N,
+            column O,
+            column P,
+            column Q,
+            column R,
+            column S,
+            column T,
+            column U,
+            column V,
+            column X,
+            column Y,
+            column Z,
+            column AA,
+            column AB,
+            column AC,
+            column AD,
+            column AE,
+            column AF,
+            column AH,
+            column AI,
+            column AJ,
+            column AK,
+            column AL,
+            column AM,
+            column AN,
+            column AO,
+            column AP,            
+            column AR,
+            column AS,
+            column AT,
+            column AU,
+            column AV,
+            column AW,
+            column AX,
+            column AY,
+            column AZ,
+            column BB,
+            column BC,
+            column BD,
+            column BE,
+            column BF,
+            column BG,
+            column BH,
+            column BI,
+            column BJ,
+            column BL,
+            column BM,
+            column BN,
+            column BO,
+            column BP,
+            column BQ,
+            column BR,
+            column BS,
+            column BT,
+            column BV,
+            column BW,
+            column BX,
+            column BY,
+            column BZ,
+            ];
+        }
+
+valuetype CIN oftype text {
+    constraints: [
+        OnlyCapitalLettersAndDigits,
+        ExactlyFiveCharacters,
+    ];
+        }
+
+valuetype PositiveInteger oftype integer {
+    constraints: [
+        Positive
+    ];
+        }
+
+constraint OnlyCapitalLettersAndDigits on text:
+    value matches /^[A-Z0-9]*$/;
+
+constraint ExactlyFiveCharacters on text:
+    value.length == 5;
+
+ constraint Positive oftype RangeConstraint {
+   lowerBound: 1;
+   lowerBoundInclusive: true;
+   }
+
+	block CarTblIntrptr oftype TableInterpreter {
+		header: false;
+		columns: [
+            "date" oftype text,
+            "CIN" oftype CIN ,
+            "name" oftype text,
+            "petrol" oftype PositiveInteger,
+            "diesel" oftype PositiveInteger,
+            "gas" oftype PositiveInteger,
+            "electro" oftype PositiveInteger,
+            "hybrid" oftype PositiveInteger,
+            "plugInHybrid" oftype PositiveInteger,
+            "others" oftype PositiveInteger
+
+		];
+	}
+
+	block CarLdr oftype SQLiteLoader {
+		table: "cars";
+		file: "./cars.sqlite";
+	}
+}
