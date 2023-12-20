@@ -29,6 +29,6 @@ jobs:
         chmod +x ./tests.sh
         ./tests.sh
 
-    - name: Save DataFrame to Pickle file
-      run: |
-        python3 /path/to/Project/df_to_pickle.py  
+#    - name: Save DataFrame to Pickle file
+#      run: |
+#        python3 /path/to/Project/df_to_pickle.py  
