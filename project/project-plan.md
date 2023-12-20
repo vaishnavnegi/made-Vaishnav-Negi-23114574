@@ -41,10 +41,6 @@ Dataset contains JSON files with ball by ball data of matches, with details like
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
 
-1. Download and study JSON files from source. [#1][i1]
-2. Convert JSON files to CSV. [#2][i2]
-3. Use Pandas and other visualization tools for analysis. [#3][i3]
+1. Use Pandas and other visualization tools for analysis. [#3][i3]
 
-[i1]: https://github.com/vaishnavnegi/made-Vaishnav-Negi-23114574/issues/1
-[i2]: https://github.com/vaishnavnegi/made-Vaishnav-Negi-23114574/issues/2
 [i3]: https://github.com/vaishnavnegi/made-Vaishnav-Negi-23114574/issues/3
