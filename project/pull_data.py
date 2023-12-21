@@ -13,8 +13,8 @@ filename = url.split('/')[-1]
 # Downloading the file by sending the request to the URL
 req = requests.get(url)
 # extracting the zip file contents
-zipfile= zipfile.ZipFile(BytesIO(req.content))
-zipfile.extractall('t20s_male_json/')
+z= zipfile.ZipFile(BytesIO(req.content))
+z.extractall('t20s_male_json/')
 
 
 
@@ -27,8 +27,8 @@ filename = url.split('/')[-1]
 # Downloading the file by sending the request to the URL
 req = requests.get(url)
 # extracting the zip file contents
-zipfile= zipfile.ZipFile(BytesIO(req.content))
-zipfile.extractall('ipl_json/')
+z= zipfile.ZipFile(BytesIO(req.content))
+z.extractall('ipl_json/')
 
 '''
 Fucntion to convert Json data into lists to make it easier to use and iterate over.
