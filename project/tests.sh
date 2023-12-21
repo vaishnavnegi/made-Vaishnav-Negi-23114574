@@ -8,8 +8,13 @@ output_file_ipl="../data/ball_by_ball_ipl.csv"
 rm -f "$output_file_it20"
 rm -f "$output_file_ipl"
 
-# Execute the data pipeline
-python3 /path/to/Project/pipeline.py
+# Execute the data pipeline in the background with a message
+echo "Executing data pipeline..."
+python3 /project/pipeline.py &
+
+# Wait for the pipeline to finish and display a message
+wait
+echo "Data pipeline execution completed."
 
 # Validate the output files
 if [ -f "$output_file_it20" ]; then
