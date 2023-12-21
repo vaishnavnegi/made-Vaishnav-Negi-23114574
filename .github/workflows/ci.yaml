@@ -26,7 +26,8 @@ jobs:
 
     - name: Execute tests.sh
       run: |
-        chmod +x ./tests.sh
+        chmod +x ./project/tests.sh
+        cd project
         ./tests.sh
 
 #    - name: Save DataFrame to Pickle file
