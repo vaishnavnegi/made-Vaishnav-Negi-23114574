@@ -10,7 +10,7 @@ rm -f "$output_file_ipl"
 
 # Execute the data pipeline in the background with a message
 echo "Executing data pipeline..."
-python3 /project/pull_data.py &
+python3 pull_data.py &
 
 # Wait for the pipeline to finish and display a message
 wait
