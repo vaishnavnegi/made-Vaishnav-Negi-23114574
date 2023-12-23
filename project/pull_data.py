@@ -3,10 +3,9 @@ import os
 import pandas as pd
 import requests, zipfile
 from io import BytesIO
-from tqdm import tqdm
 
 '''
-Code block to download the Json data for International Twenty over format cricket matches.
+Code block to download the JSON data for International Twenty over format cricket matches.
 '''
 url ="https://cricsheet.org/downloads/t20s_male_json.zip"
 # Split URL to get the file name
@@ -19,7 +18,7 @@ z.extractall('t20s_male_json/')
 
 
 '''
-Code block to download the Json data for Indian Prmier League cricket matches.
+Code block to download the JSON data for Indian Premier League cricket matches.
 '''
 url ="https://cricsheet.org/downloads/ipl_json.zip"
 # Split URL to get the file name
@@ -31,7 +30,7 @@ z= zipfile.ZipFile(BytesIO(req.content))
 z.extractall('ipl_json/')
 
 '''
-Fucntion to convert Json data into lists to make it easier to use and iterate over.
+Function to convert JSON data into lists to make it easier to use and iterate over.
 '''
 def load_data_it20(path_to_json):
     # This function loads all of the json files and stores them as items in a list
@@ -48,7 +47,7 @@ def load_data_it20(path_to_json):
 
 
 '''
-Fucntion to convert Json data into lists to make it easier to use and iterate over.
+Function to convert JSON data into lists to make it easier to use and iterate over.
 '''
 def load_data_ipl(path_to_json):
     # This function loads all of the json files and stores them as items in a list
@@ -65,17 +64,17 @@ def load_data_ipl(path_to_json):
 
 
 '''
-This function creates a Pandas dataframe from the list obtained from the Json data.
-We focus on some important characterstics and features according to the rules of cricket matches and save the necessary data.
+This function creates a Pandas data frame from the list obtained from the JSON data.
+We focus on some important characteristics and features according to the rules of cricket matches and save the necessary data.
 '''
 def create_df(data):
     pd.set_option('mode.chained_assignment', None)
     X = []
-    for j in tqdm(range(len(data))):
+    for j in range(len(data)):
         if len(data[j]['innings']) > 1:
             if 'winner' in data[j]['info']['outcome'].keys():
                 if 'target' in data[j]['innings'][1].keys():
-                    # Need to ensure that the data has a winner and a target score as we are not interested in incomplete matched
+                    # Need to ensure that the data has a winner and a target score as we are not interested in incomplete matches.
                     match_id = data[j]['match id']
                     date = data[j]['info']['dates'][0]
                     match_target = data[j]['innings'][1]['target']['runs']
@@ -87,7 +86,7 @@ def create_df(data):
                     chase_success = 0
                     if chaser == winner:
                         chase_success = 1
-                    # Store match specific data such as team names, date, winner, first innings score and initialise chase success feature
+                    # Store match-specific data such as team names, date, winner, first innings score and initialize chase success feature
                     for innings in range(len(data[j]['innings'])):
                         n_wickets = 0
                         team_runs = 0
@@ -123,7 +122,7 @@ def create_df(data):
                                 if 'extras' in data[j]['innings'][innings]['overs'][over]['deliveries'][ball].keys():
                                     extra_type = list(data[j]['innings'][innings]['overs'][over]['deliveries'][ball]['extras'].keys())
                                     if 'wides' in data[j]['innings'][innings]['overs'][over]['deliveries'][ball]['extras']:
-                                        # Initialise a feature which represents whether or not a ball had to be rebowled, this will be useful later
+                                        # Initialise a feature that represents whether or not a ball had to be bowled, this will be useful later
                                         rebowled = 1
                                     elif 'noballs' in data[j]['innings'][innings]['overs'][over]['deliveries'][ball]['extras']:
                                         rebowled = 1
@@ -136,13 +135,13 @@ def create_df(data):
                                     balls_rem -= 1
                                 X.append([match_id, date, venue, bat_first,  chaser, innings+1, over+1, ball_in_over+1, batter, non_striker, bowler, batter_runs, extra_runs, total_runs, rebowled, extra_type, wicket, method, player_out, team_runs, n_wickets, match_target, runs_to_target, balls_rem, winner, chase_success])
     columns = ['Match ID','Date', 'Venue', 'Bat First', 'Bat Second','Innings', 'Over', 'Ball', 'Batter','Non Striker', 'Bowler', 'Batter Runs', 'Extra Runs', 'Runs From Ball','Ball Rebowled', 'Extra Type', 'Wicket', 'Method', 'Player Out', 'Innings Runs', 'Innings Wickets', 'Target Score', 'Runs to Get','Balls Remaining', 'Winner', 'Chased Successfully']
-    # Createw a data frame with the ball by ball data extracted, column names are given above
+    # Create a data frame with the ball-by-ball data extracted, column names are given above
     df = pd.DataFrame(X, columns = columns)
     # create a new column to store the sum of Batter Runs
     df['Total Batter Runs'] = 0
-    # create a new column to store the sum of Non Striker Runs
+    # create a new column to store the sum of Non-Striker Runs
     df['Total Non Striker Runs'] = 0
-    # Create new columns called 'batter balls faced' and 'non striker balls faced'
+    # Create new columns called 'batter balls faced' and 'non-striker balls faced'
     df['Batter Balls Faced'] = 0
     df['Non Striker Balls Faced'] = 0
     # Create new columns for the case when a player gets out to give their final runs total and balls faced total
@@ -155,7 +154,7 @@ def create_df(data):
     else row['Batter Runs'], axis=1)
 
     # loop over each row in the data frame
-    for i, row in tqdm(df.iterrows()):
+    for i, row in df.iterrows():
         batter = row['Batter']
         date = row['Date']
         non_striker = row['Non Striker']
@@ -196,7 +195,7 @@ def create_df(data):
         df.at[i, 'Non Striker Balls Faced'] = len(set(unique_balls_faced_non_striker))
 
 
-    for i, row in tqdm(df.iterrows()):
+    for i, row in df.iterrows():
         if row['Batter Balls Faced'] == 1:
             if df.at[i, 'Ball'] == df.at[i+1, 'Ball']:
 
@@ -221,18 +220,18 @@ def create_df(data):
 
 
 '''
-The lines below use the load_data_it20 and create_df functions to create and sace a csv file for IT20 data.
+The lines below use the load_data_it20 and create_df functions to create and save a CSV file for IT20 data.
 '''
 path_to_json = 't20s_male_json/'
 it20_data = create_df(load_data_it20(path_to_json))
-file_path_it = os.path.join('..', 'data', 'ball_by_ball_it20.csv')
+file_path_it = 'data\ball_by_ball_it20.csv')
 it20_data.to_csv(file_path_it, index=False)
 
 
 '''
-The lines below use the load_data_ipl and create_df functions to create and sace a csv file for IT20 data.
+The lines below use the load_data_ipl and create_df functions to create and save a CSV file for IT20 data.
 '''
 path_to_json = 'ipl_json/'
 ipl_data = create_df(load_data_ipl(path_to_json))
-file_path_ipl = os.path.join('..', 'data', 'ball_by_ball_ipl.csv')
+file_path_ipl = 'data\ball_by_ball_ipl.csv'
 ipl_data.to_csv(file_path_ipl, index=False)
