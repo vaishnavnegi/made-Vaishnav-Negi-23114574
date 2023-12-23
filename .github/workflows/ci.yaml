@@ -3,21 +3,21 @@ name: CI
 on:
   push:
     branches:
-    - main
+      - main
     paths:
-    - projects/**
+      - projects/**
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v2  
       with:
         python-version: 3.11
 
@@ -28,10 +28,5 @@ jobs:
 
     - name: Execute tests.sh
       run: |
-        chmod +x ./project/tests.sh
-        cd project
-        ./tests.sh
+        .\project\tests.sh 
 
-#    - name: Save DataFrame to Pickle file
-#      run: |
-#        python3 /path/to/Project/df_to_pickle.py  
