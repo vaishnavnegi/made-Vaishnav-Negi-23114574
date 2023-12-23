@@ -5,7 +5,7 @@ import requests, zipfile
 from io import BytesIO
 
 '''
-Code block to download the Json data for International Twenty over format cricket matches.
+Code block to download the JSON data for International Twenty over format cricket matches.
 '''
 url ="https://cricsheet.org/downloads/t20s_male_json.zip"
 # Split URL to get the file name
@@ -19,7 +19,7 @@ z.extractall('t20s_male_json/')
 
 
 '''
-Code block to download the Json data for Indian Prmier League cricket matches.
+Code block to download the JSON data for Indian Premier League cricket matches.
 '''
 url ="https://cricsheet.org/downloads/ipl_json.zip"
 # Split URL to get the file name
@@ -31,7 +31,7 @@ z= zipfile.ZipFile(BytesIO(req.content))
 z.extractall('ipl_json/')
 
 '''
-Fucntion to convert Json data into lists to make it easier to use and iterate over.
+Function to convert JSON data into lists to make it easier to use and iterate over.
 '''
 def load_data_it20(path_to_json):
     # This function loads all of the json files and stores them as items in a list
@@ -48,7 +48,7 @@ def load_data_it20(path_to_json):
 
 
 '''
-Fucntion to convert Json data into lists to make it easier to use and iterate over.
+Function to convert JSON data into lists to make it easier to use and iterate over.
 '''
 def load_data_ipl(path_to_json):
     # This function loads all of the json files and stores them as items in a list
@@ -66,10 +66,11 @@ def load_data_ipl(path_to_json):
 
 
 '''
-This function creates a Pandas dataframe from the list obtained from the Json data.
-We focus on some important characterstics and features according to the rules of cricket matches and save the necessary data.
+This function creates a Pandas data frame from the list obtained from the JSON data.
+We focus on some important characteristics and features according to the rules of cricket matches and save the necessary data.
 '''
 def create_df(data):
+    pd.set_option('mode.chained_assignment', None)
     X = []
     for j in range(len(data)):
         if len(data[j]['innings']) > 1:
@@ -222,19 +223,19 @@ def create_df(data):
 
 
 '''
-The lines below use the load_data_it20 and create_df functions to create and sace a csv file for IT20 data.
+The lines below use the load_data_it20 and create_df functions to create and save a CSV file for IT20 data.
 '''
 path_to_json = 't20s_male_json/'
 it20_data = create_df(load_data_it20(path_to_json))
-file_path_it = os.path.join('..', 'data', 'ball_by_ball_it20.csv')
+file_path_it = os.path.join('..', 'data', 'it20.csv')
 it20_data.to_csv(file_path_it, index=False)
 
 
 
 '''
-The lines below use the load_data_ipl and create_df functions to create and sace a csv file for IT20 data.
+The lines below use the load_data_ipl and create_df functions to create and save a CSV file for IT20 data.
 '''
 path_to_json = 'ipl_json/'
 ipl_data = create_df(load_data_ipl(path_to_json))
-file_path_ipl = os.path.join('..', 'data', 'ball_by_ball_ipl.csv')
+file_path_ipl = os.path.join('..', 'data', 'ipl.csv')
 ipl_data.to_csv(file_path_ipl, index=False)
