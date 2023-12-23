@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - project/**
+      - projects/**
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Set up Python
-      uses: actions/setup-python@v4  
+      uses: actions/setup-python@v4
       with:
         python-version: 3.11
 
@@ -26,7 +26,16 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt 
 
-    - name: Execute tests.sh
+    - name: Execute tests.bat
       run: |
         .\project\tests.bat
 
+    # Add the following steps to commit and push generated CSV files
+    - name: Commit and Push CSV files
+      run: |
+        echo Adding CSVs to data directory.
+        git add data\ball_by_ball_it20.csv
+        git add data\ball_by_ball_ipl.csv
+
+        git commit -m "Add generated CSV files" -a
+        git push origin main
