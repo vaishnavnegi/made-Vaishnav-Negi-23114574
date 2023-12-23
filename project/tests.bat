@@ -10,6 +10,7 @@ if exist "%output_file_ipl%" del "%output_file_ipl%"
 
 rem Execute the data pipeline with a message
 echo Executing data pipeline...
+cd %GITHUB_WORKSPACE%\project  rem Change to the project directory
 python pull_data.py
 
 rem Validate the output files
