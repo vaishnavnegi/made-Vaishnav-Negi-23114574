@@ -28,5 +28,5 @@ jobs:
 
     - name: Execute tests.sh
       run: |
-        .\project\tests.sh 
+        .\project\tests.bat
 
