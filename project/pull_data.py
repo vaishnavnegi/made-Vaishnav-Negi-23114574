@@ -18,7 +18,6 @@ z= zipfile.ZipFile(BytesIO(req.content))
 z.extractall('t20s_male_json/')
 
 
-
 '''
 Code block to download the Json data for Indian Prmier League cricket matches.
 '''
@@ -63,7 +62,6 @@ def load_data_ipl(path_to_json):
             match1['match id'] = match_id
             data.append(match1)
     return data
-
 
 
 '''
@@ -222,7 +220,6 @@ def create_df(data):
     return df
 
 
-
 '''
 The lines below use the load_data_it20 and create_df functions to create and sace a csv file for IT20 data.
 '''
@@ -230,7 +227,6 @@ path_to_json = 't20s_male_json/'
 it20_data = create_df(load_data_it20(path_to_json))
 file_path_it = os.path.join('..', 'data', 'ball_by_ball_it20.csv')
 it20_data.to_csv(file_path_it, index=False)
-
 
 
 '''
