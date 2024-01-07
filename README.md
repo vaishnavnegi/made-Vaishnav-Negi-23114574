@@ -24,8 +24,7 @@ This repository contains a comprehensive data engineering pipeline and analysis 
 
 ## Important links:
 1. [Final Report (PDF)](./project/report.pdf)
-2. [Final Report (HTML)](./project/report.html)
-3. [Python script containing data pipeline (pull_data.py)](./project/pull_data.py)
+2. [Python script containing data pipeline (pull_data.py)](./project/pull_data.py)
 
 ![stock_img_1](1679755900405.jpg)
 
