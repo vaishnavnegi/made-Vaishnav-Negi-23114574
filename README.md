@@ -1,10 +1,10 @@
 # The Great Cricket Conundrum
 
-![stock_img_1](1679755900405.jpg)
-
 ## Overview
 
 This repository contains a comprehensive data engineering pipeline and analysis tools for processing and exploring cricket match data. The primary focus is on International Twenty over Format (IT20) matches, with an extension to league format matches. The project involves extracting data from JSON files, transforming it into a structured format, and conducting statistical analysis on dismissal methods.
+
+![stick_image_2](1689827968897.jpg)
 
 ## Objectives
 
