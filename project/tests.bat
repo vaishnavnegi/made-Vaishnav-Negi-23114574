@@ -1,8 +1,8 @@
 @echo off
 
 rem Define output file paths
-set "output_file_it20=data\ball_by_ball_it20.csv"
-set "output_file_ipl=data\ball_by_ball_ipl.csv"
+set "output_file_it20=data\it20.csv"
+set "output_file_ipl=data\ipl.csv"
 
 rem Remove existing output files if they exist
 if exist "%output_file_it20%" del "%output_file_it20%"
