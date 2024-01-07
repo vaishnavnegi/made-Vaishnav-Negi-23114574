@@ -34,8 +34,8 @@ jobs:
     - name: Commit and Push CSV files
       run: |
         echo Adding CSVs to data directory.
-        git add data\ball_by_ball_it20.csv
-        git add data\ball_by_ball_ipl.csv
+        git add data\it20.csv
+        git add data\ipl.csv
 
         git commit -m "Add generated CSV files" -a
         git push origin main
