@@ -1,4 +1,4 @@
-# Methods of Advanced Data Engineering Template Project
+# The Great Cricket Conundrum
 
 This template project provides some structure for your open data project in the MADE module at FAU.
 This repository contains (a) a data science project that is developed by the student over the course of the semester, and (b) the exercises that are submitted over the course of the semester.
