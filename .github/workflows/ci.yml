@@ -29,8 +29,12 @@ jobs:
     - name: Execute tests.bat
       run: |
         .\project\tests.bat
+    
+    - name: Set Git identity
+      run: |
+        git config --global user.email "vaishnavnegi207@gmail.com"
+        git config --global user.name "vaishnavnegi"
 
-    # Add the following steps to commit and push generated CSV files
     - name: Commit and Push CSV files
       run: |
         echo Adding CSVs to data directory.
@@ -39,3 +43,4 @@ jobs:
 
         git commit -m "Add generated CSV files" -a
         git push origin main
+
