@@ -12,7 +12,7 @@ What methods of dismissal have what share in the International format of the gam
 ## Description
 
 <!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
-In this data science project, I aim to determine the statistically best batsman and bowler in the 20-20 format of cricket, leveraging two comprehensive datasets: the Ball-by-ball data for International Men's Cricket Matches (2003 - 2023) and the Indian Premier League match data (2008 - 2023). As a cricket enthusiast from South Asia, particularly India, I'm passionate about resolving the age-old debate of identifying the greatest players in this format.
+In this data science project, I aim to determine the statistically best batsman and bowler in the 20-20 format of cricket, leveraging two comprehensive datasets: the Ball-by-ball data for International Men's Cricket Matches (2003 - 2023) and the Indian Premier League match data (2008 - 2023). As a cricket enthusiast from South Asia, particularly India, I'm passionate about the game and the potential benefit it can have from data analysis.
 
 The project involves transforming the raw data from JSON to CSV format, followed by meticulous data cleaning and feature engineering. Through extensive exploratory data analysis (EDA), I intend to uncover significant trends and patterns related to the game. By employing advanced statistical methods and machine learning techniques, I will evaluate player performance metrics such as batting average, strike rate, economy rate, and wicket-taking ability.
 
