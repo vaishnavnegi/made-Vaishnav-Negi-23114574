@@ -7,7 +7,7 @@ The Great Cricket Conundrum
 ## Main Question
 
 <!-- Think about one main question you want to answer based on the data. -->
-Who are statistically the best batsman and bowler in the 20-20 format of the game?
+What methods of dismissal have what share in the International format of the game and the league format of the game?
 
 ## Description
 
@@ -16,7 +16,8 @@ In this data science project, I aim to determine the statistically best batsman 
 
 The project involves transforming the raw data from JSON to CSV format, followed by meticulous data cleaning and feature engineering. Through extensive exploratory data analysis (EDA), I intend to uncover significant trends and patterns related to the game. By employing advanced statistical methods and machine learning techniques, I will evaluate player performance metrics such as batting average, strike rate, economy rate, and wicket-taking ability.
 
-By answering the fundamental question, "Who is statistically the best batsman and bowler in the 20-20 format of the game?" with rigorous statistical backing, this project not only settles a perennial debate but also provides valuable insights into player performance, contributing to the broader understanding of cricket statistics and player rankings. The findings can potentially influence team strategies, player selections, and fan perceptions, making it a vital analysis for cricket enthusiasts and professionals alike.
+
+Analyzing methods of dismissal in cricket offers valuable insights for players, coaches, and teams. This data helps evaluate player performance, tailor bowling, and team strategies, analyze opponents, and make informed in-game decisions. It also guides training sessions, aids in scouting, and contributes to overall team improvement by addressing weaknesses. Dismissal data provides a data-driven approach to enhance cricket teams' strategic planning and performance on the field.
 
 ## Datasources
 
