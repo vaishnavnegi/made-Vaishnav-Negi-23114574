@@ -224,7 +224,7 @@ The lines below use the load_data_it20 and create_df functions to create and sav
 '''
 path_to_json = 't20s_male_json/'
 it20_data = create_df(load_data_it20(path_to_json))
-file_path_it = os.path.join('data', 'ball_by_ball_it20.csv')
+file_path_it = os.path.join('data', 'it20.csv')
 it20_data.to_csv(file_path_it, index=False)
 
 
@@ -233,5 +233,5 @@ The lines below use the load_data_ipl and create_df functions to create and save
 '''
 path_to_json = 'ipl_json/'
 ipl_data = create_df(load_data_ipl(path_to_json))
-file_path_ipl = os.path.join('data', 'ball_by_ball_ipl.csv')
+file_path_ipl = os.path.join('data', 'ipl.csv')
 ipl_data.to_csv(file_path_ipl, index=False)
