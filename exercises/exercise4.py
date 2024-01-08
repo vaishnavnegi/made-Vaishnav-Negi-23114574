@@ -1,7 +1,8 @@
 import zipfile
 import urllib.request
+import random
+import string
 import pandas as pd
-import sqlite3
 from sqlalchemy import create_engine
 from sqlalchemy.types import *
 
@@ -15,9 +16,26 @@ urllib.request.urlretrieve(download_url, zip_file_path)
 with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
     zip_ref.extractall(extracted_folder_path)
 
+# Existing column names
+existing_columns = ["Geraet", "Hersteller", "Model", "Monat", "Temperatur in °C (DWD)",
+                    "Latitude (WGS84)", "Longitude (WGS84)", "Verschleierung (m)",
+                    "Aufenthaltsdauer im Freien (ms)", "Batterietemperatur in °C", "Geraet aktiv"]
+
+# Number of additional random columns needed to reach a total of 452 columns
+additional_columns_needed = 453 - len(existing_columns) #453 is the number of total columns, obtained by opening the file in excel
+
+# Generate random column names
+random_columns = [''.join(random.choices(string.ascii_uppercase + string.digits, k=8)) for _ in range(additional_columns_needed)]
+
+# Combine existing and random column names
+all_columns = existing_columns + random_columns
+
+# Convert the list to a ';' separated string
+columns_string = ';'.join(all_columns)
+
 # Step 2: Reshape data
 csv_file_path = f"{extracted_folder_path}/data.csv"
-df = pd.read_csv(csv_file_path, sep=';', decimal=',', on_bad_lines='skip')
+df = pd.read_csv(csv_file_path,header=None, names=all_columns, skiprows=1, sep=';', decimal=',')
 
 columns_to_keep = ["Geraet", "Hersteller", "Model", "Monat", "Temperatur in °C (DWD)", "Batterietemperatur in °C", "Geraet aktiv"]
 df = df[columns_to_keep]
@@ -30,11 +48,6 @@ df = df.iloc[:, :df.columns.get_loc("Geraet aktiv") + 1]
 
 # Handle empty values
 df.dropna(inplace=True)
-
-# Forced Shape match 
-while len(df) < 4872:
-    random_row = df.sample(n=1, replace=True)
-    df = pd.concat([df, random_row], ignore_index=True)
 
 # Step 3: Transform data
 df["Temperatur"] = (df["Temperatur"] * 9/5) + 32
