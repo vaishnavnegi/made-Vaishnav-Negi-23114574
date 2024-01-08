@@ -28,6 +28,9 @@ df.rename(columns={"Temperatur in °C (DWD)": "Temperatur", "Batterietemperatur 
 # Discard columns to the right of "Geraet aktiv"
 df = df.iloc[:, :df.columns.get_loc("Geraet aktiv") + 1]
 
+# Handle empty values
+df.dropna(inplace=True)
+
 # Step 3: Transform data
 df["Temperatur"] = (df["Temperatur"] * 9/5) + 32
 df["Batterietemperatur"] = (df["Batterietemperatur"] * 9/5) + 32
