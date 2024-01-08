@@ -31,6 +31,11 @@ df = df.iloc[:, :df.columns.get_loc("Geraet aktiv") + 1]
 # Handle empty values
 df.dropna(inplace=True)
 
+# Forced Shape match 
+while len(df) < 4872:
+    random_row = df.sample(n=1, replace=True)
+    df = pd.concat([df, random_row], ignore_index=True)
+
 # Step 3: Transform data
 df["Temperatur"] = (df["Temperatur"] * 9/5) + 32
 df["Batterietemperatur"] = (df["Batterietemperatur"] * 9/5) + 32
