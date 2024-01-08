@@ -39,14 +39,14 @@ df = df[df["Geraet"] > 0]
 
 # Step 5: Use fitting SQLite types and write data into SQLite database
 engine = create_engine('sqlite:///temperatures.sqlite')
-df.to_sql('temperatures', engine, index=False, if_exists='replace', dtype={
+df.to_sql('tempratures', engine, index=False, if_exists='replace', dtype={
     "Geraet": BigInteger,
     "Hersteller": Text,
     "Model": Text,
-    "Monat": Text,
+    "Monat": BigInteger,
     "Temperatur": Float,
     "Batterietemperatur": Float,
-    "Geraet aktiv": BigInteger
+    "Geraet aktiv": Text
 })
 
 print("Data pipeline successfully executed.")
