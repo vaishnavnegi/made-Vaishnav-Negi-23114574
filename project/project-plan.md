@@ -38,6 +38,4 @@ Dataset contains JSON files with ball by ball data of matches, with details like
 
 Dataset contains JSON files with ball by ball data of matches, with details like, batsmen, bowler, dismissal, dismissal method etc.
 
-## Work Packages
-<!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
 
