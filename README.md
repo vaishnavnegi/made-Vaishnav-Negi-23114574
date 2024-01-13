@@ -24,8 +24,10 @@ This repository contains a comprehensive data engineering pipeline and analysis 
 
 ## Important links:
 1. [Final Report (PDF)](./project/report.pdf)
-2. [Python script containing data pipeline (pull_data.py)](./project/pull_data.py)
-3. [Notebook(ipynb) containing EDA and other Analysis, not included in the Final Report](./project/Analysis_Experiments.ipynb)
+2. [Presentation Video](./project/presentation-video.mp4)
+3. [Presentation Slides](./project/slides.pdf) [/ consider downloading the .pptx version here](./project/MADE presentation)
+4. [Python script containing data pipeline (pull_data.py)](./project/pull_data.py)
+5. [Notebook(ipynb) containing EDA and other Analysis, not included in the Final Report](./project/Analysis_Experiments.ipynb)
 
 ![stock_img_1](1679755900405.jpg)
 
