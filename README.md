@@ -6,7 +6,7 @@ This repository contains a comprehensive data engineering pipeline and analysis 
 
 ## Objectives
 
-- **Data Extraction:** Download and extract IT20 match data from online sources using Python.
+- **Data Extraction:** Download and extract IT20 and IPL match data from online sources using Python.
 - **Data Transformation:** Convert raw JSON data into a structured format for efficient analysis.
 - **Statistical Analysis:** Investigate dismissal methods in IT20 matches and league format matches.
 
@@ -20,7 +20,7 @@ This repository contains a comprehensive data engineering pipeline and analysis 
 
 - **Data Collection:** Python code for downloading and extracting IT20 match data in JSON format (pull_data.py).
 - **Data Engineering:** Functions for transforming JSON data into a structured pandas DataFrame(pull_data.py).
-- **Result:** PDF and HTML report analyzing dismissal methods and other relevant statistics.
+- **Result:** PDF report documenting the work and analyzing dismissal methods.
 
 ## Important links:
 1. [Final Report (PDF)](./project/report.pdf)
