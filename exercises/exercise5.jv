@@ -1,0 +1,88 @@
+// SPDX-FileCopyrightText: 2023 Friedrich-Alexander-Universitat Erlangen-Nurnberg
+//
+// SPDX-License-Identifier: AGPL-3.0-only
+
+// Example 4: GTFS Static Data
+// Learning goals:
+// - Understand how to work with file systems
+
+// 1. This Jayvee model describes a pipeline 
+// from a zip file in the GTFS format in the web 
+// to a joint SQLite file with multiple tables.
+pipeline GtfsPipeline {
+
+    // 2. The origin for multiple pipe sequences is a zip
+    // file. Each csv file in this zip is further processed 
+    // by its own sequence of blocks and pipes.
+    GTFSSampleFeedExtractor 
+    -> ZipArchiveInterpreter
+     -> StopsFilePicker 
+      -> StopsTextFileInterpreter
+       -> StopsCSVInterpreter 
+        -> StopsTableInterpreter 
+         -> StopsLoader;
+
+    // 3. As a first step, we download the zip file and interpret it.
+    block GTFSSampleFeedExtractor oftype HttpExtractor {
+        url: "https://gtfs.rhoenenergie-bus.de/GTFS.zip";
+    }
+
+    block ZipArchiveInterpreter oftype ArchiveInterpreter {
+        archiveType: "zip";
+    }
+
+    // 4. Next, we pick several csv files (with the file extension ".txt") 
+    // for further processing .
+    
+    block StopsFilePicker oftype FilePicker {
+        path: "/stops.txt";
+    }
+
+    // 5. The rest of the pipeline follows the usual pattern.
+    block StopsTextFileInterpreter oftype TextFileInterpreter { }
+    block StopsCSVInterpreter oftype CSVInterpreter {
+        enclosing: '"';
+     }
+
+    valuetype validZoneid oftype integer {
+        constraints: [ZoneidConstraint];
+        }
+
+    valuetype validLat oftype decimal {
+        constraints: [LatConstraint];
+        }
+
+    valuetype validLong oftype decimal {
+    constraints: [LongConstraint];
+    }
+
+    constraint ZoneidConstraint on integer: 
+    value == 2001;
+
+    constraint LatConstraint oftype RangeConstraint {
+        lowerBound: -90;
+        upperBound: 90;
+        }
+
+    constraint LongConstraint oftype RangeConstraint {
+        lowerBound: -90;
+        upperBound: 90;
+        }
+
+    block StopsTableInterpreter oftype TableInterpreter {
+        header: true;
+        columns:[
+            "stop_id" oftype integer,
+            "stop_name" oftype text,
+            "stop_lat" oftype validLat,
+            "stop_lon" oftype validLong,
+            "zone_id" oftype validZoneid,
+        ];
+    }
+
+    block StopsLoader oftype SQLiteLoader {
+        table: "stops";
+        file: "./gtfs.sqlite";
+    }
+
+}
